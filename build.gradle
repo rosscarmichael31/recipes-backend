@@ -1,0 +1,49 @@
+plugins {
+	id 'java'
+	id 'idea'
+	id 'org.springframework.boot' version '3.0.3'
+	id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'com.thg.accelerator'
+version = '1.0.0'
+
+java {
+	sourceCompatibility = '17'
+	targetCompatibility = '17'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+	implementation 'com.auth0:java-jwt:3.18.1'
+
+
+	implementation group: 'org.hibernate.orm', name: 'hibernate-core', version: '6.1.7.Final'
+	implementation group: 'org.postgresql', name: 'postgresql', version: '42.5.4'
+
+	implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'
+	implementation group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
+	implementation group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
+
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'com.mashape.unirest:unirest-java:1.4.9'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
